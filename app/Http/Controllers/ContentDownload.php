@@ -39,7 +39,7 @@ class ContentDownload extends Controller
             $perUser = [];
             $currentuser = ModelsContentDownload::where('system_id', $content['system_id'])->pluck('answer')->toArray();
             $answerdata = 1;
-            for ($i = 0; $i < 16; $i++) {
+            for ($i = 0; $i < 4; $i++) {
                 $content['answer' . $answerdata] = $currentuser[$i];
                 $answerdata ++ ;
             }
@@ -49,7 +49,7 @@ class ContentDownload extends Controller
         $dataToUseInCsv = $AllUser;
         $qustionText = trans('translation.content_surveys.questions');
         $csvHeader = trans('translation.content_surveys.result_csv_headers_test');
-        for ($count = 1; $count <= 16; $count++) {
+        for ($count = 1; $count <= 4; $count++) {
             $questionTitle['answer' . $count] = $qustionText . $count . 'の回答';
             $csvHeader = Arr::add($csvHeader, 'answer' . $count, $qustionText . $count . 'の回答');
         }
@@ -60,7 +60,6 @@ class ContentDownload extends Controller
                 $handle = fopen('php://output', 'w');
                 $list = $dataToUseInCsv;
                 foreach ($list as $row) {
-                    var_dump($row);
                     fputcsv($handle, CommonHelper::convertText($row));
                 }
                 fclose($handle);
