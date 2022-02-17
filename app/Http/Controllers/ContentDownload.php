@@ -24,7 +24,6 @@ class ContentDownload extends Controller
         ini_set('max_input_time', $maxExecTime);
         $fileName = 'content-surveys';
         $contents = ModelsContentDownload::select(
-            'id',
             'content_id',
             'content_title as title',
             'start_date as open_date',
