@@ -36,7 +36,7 @@ class ContentDownload extends Controller
         foreach ($contents as $content) {
 //            var_dump($content['id']);
             $perUser = [];
-            $currentuser = ModelsContentDownload::where('system_id', $content['system_id'])->pluck('answer')->toArray();
+            $currentuser = ModelsContentDownload::where('system_id', $content['system_id'])->orderBy('survay_id','ASC')->pluck('answer')->toArray();
             $answerdata = 1;
             for ($i = 0; $i < 4; $i++) {
                 $content['answer' . $answerdata] = $currentuser[$i];

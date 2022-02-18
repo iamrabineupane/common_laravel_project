@@ -25,6 +25,7 @@ class ContentDownloadTable extends Migration
             $table->string('c_id');
             $table->string('answer');
             $table->string('cus_id');
+            $table->string('survay_id');
             $table->timestamps();
         });
     }
