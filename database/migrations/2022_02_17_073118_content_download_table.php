@@ -38,5 +38,6 @@ class ContentDownloadTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('content_download');
     }
 }
