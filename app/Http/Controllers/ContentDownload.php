@@ -34,8 +34,7 @@ class ContentDownload extends Controller
             )->where('content_id', $contentId)->groupBy('system_id')->get()->toArray();
         $AllUser = [];
         foreach ($contents as $content) {
-//            var_dump($content['id']);
-            $perUser = [];
+            $content['created_at'] = Carbon::parse($content['created_at'])->locale('jp')->format('Y-m-d h:i:s');
             $currentuser = ModelsContentDownload::where('system_id', $content['system_id'])->orderBy('survay_id','ASC')->pluck('answer')->toArray();
             $answerdata = 1;
             for ($i = 0; $i < 4; $i++) {
