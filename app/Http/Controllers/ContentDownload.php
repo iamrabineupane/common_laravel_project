@@ -15,7 +15,7 @@ class ContentDownload extends Controller
 {
     public function contentUserSurveyResutCsv()
     {
-        $contentId = 906;
+        $contentId = 1697;
 
         $memoryLimit = '512M';
         $maxExecTime = 360;
@@ -35,9 +35,10 @@ class ContentDownload extends Controller
         $AllUser = [];
         foreach ($contents as $content) {
             $content['created_at'] = Carbon::parse($content['created_at'])->locale('jp')->format('Y-m-d h:i:s');
+            $content['cardno'] =strval($content['cardno']);
             $currentuser = ModelsContentDownload::where('system_id', $content['system_id'])->orderBy('survay_id','ASC')->pluck('answer')->toArray();
             $answerdata = 1;
-            for ($i = 0; $i < 4; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $content['answer' . $answerdata] = $currentuser[$i];
                 $answerdata ++ ;
             }
@@ -47,7 +48,7 @@ class ContentDownload extends Controller
         $dataToUseInCsv = $AllUser;
         $qustionText = trans('translation.content_surveys.questions');
         $csvHeader = trans('translation.content_surveys.result_csv_headers_test');
-        for ($count = 1; $count <= 4; $count++) {
+        for ($count = 1; $count <= 5; $count++) {
             $questionTitle['answer' . $count] = $qustionText . $count . 'の回答';
             $csvHeader = Arr::add($csvHeader, 'answer' . $count, $qustionText . $count . 'の回答');
         }
