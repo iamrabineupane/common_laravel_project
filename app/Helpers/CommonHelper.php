@@ -18,4 +18,9 @@ class CommonHelper
         }
         return '';
     }
+    public static function formatDatetimeByStyle($date, $style = 'Y/m/d H:i')
+    {
+        return $date != "" ? date($style, strtotime($date)) : "";
+    }
+
 }

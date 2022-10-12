@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContentDownload;
+use App\Http\Controllers\PricingController;
 Route::get('/content_download_for', [ContentDownload::class, 'contentUserSurveyResutCsv'])->name("content_download_for");
+Route::get('/pricing/index', [PricingController::class, 'index'])->name("pricing.index");
 Route::get('/migration_download', [ContentDownload::class, 'exportCsv'])->name("migration_download");
 Route::get('/', function () {
     return view('welcome');
